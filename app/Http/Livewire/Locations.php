@@ -29,9 +29,16 @@ class Locations extends Component
 
     public function selectLocation($id) {
         if($id != "" && is_numeric($id)) {
-            session(['location_id' => $id]);
+            $kroger = new Kroger();
+            $location = $kroger->locations()->getById($id);
 
-            return redirect('products');
+            if($location !== false && isset($location['data'])) {
+                session([
+                    'location_id' => $id,
+                    'location_data' => $location['data']
+                ]);
+                return redirect('products');
+            }
         }
     }
 

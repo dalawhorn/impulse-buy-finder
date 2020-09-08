@@ -33,4 +33,15 @@ class Locations
             return false;
         }
     }
+
+    public function getById($location_id) {
+        $response = Http::withToken($this->token)->get($this->endpoint_url."/".$location_id);
+
+        if($response->successful()) {
+            return $response->json();
+        }
+        else {
+            return false;
+        }
+    }
 }

@@ -1,9 +1,17 @@
 <div class="px-10">
     <h1 class="text-4xl font-bold mb-4">Product Search</h1>
-    <form wire:submit.prevent="searchProducts" class="mb-10">
-        <input type="text" name="search_query" wire:model.lazy="search_query" class="border rounded py-1 px-2" />
-        <button type="submit" class="rounded bg-blue-500 text-white py-1 px-2">Search</button>
-    </form>
+    <div class="grid grid-cols-1 md:grid-cols-2 mb-10">
+        <div>
+            <form wire:submit.prevent="searchProducts">
+                <input type="text" name="search_query" wire:model.lazy="search_query" class="border rounded py-1 px-2" />
+                <button type="submit" class="rounded bg-blue-500 text-white py-1 px-2">Search</button>
+            </form>
+        </div>
+        <div>
+            <div class="text-sm"><strong>Shopping at:</strong> {{ $location_data['name'] }}</div>
+            <a class="text-blue-500 text-sm" href="/locations">Change Store</a>
+        </div>
+    </div>
 
     <div>
         @if(count($current_products) == 0)
@@ -14,7 +22,7 @@
             @if(count($random_display_product) == 0)
                 <div>No items found for search.</div>
             @else
-                <div class="grid grids-cols-1 md:grid-cols-2 mb-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 mb-4">
                     <div class="flex justify-center mb-4">
                         <img src="{{ $product_image }}" />
                     </div>

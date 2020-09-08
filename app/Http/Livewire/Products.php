@@ -8,6 +8,7 @@ use Livewire\Component;
 class Products extends Component
 {
     public $location_id = "";
+    public $location_data = [];
     public $search_query = "";
     public $last_search = "";
     public $current_products = [];
@@ -44,6 +45,7 @@ class Products extends Component
     public function render()
     {
         $this->location_id = session('location_id');
+        $this->location_data = session('location_data');
         if($this->location_id == "" || !is_numeric($this->location_id) ) {
             return redirect('locations');
         }
