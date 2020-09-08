@@ -43,5 +43,37 @@
                 </div>
             @endif
         @endif
+
+        @if(count($recently_viewed) > 0)
+            <div class="mt-10">
+                <h2 class="font-bold text-xl">Recently Viewed</h2>
+                <td>
+                    <table>
+                        <tr>
+                            @foreach($recently_viewed as $viewed_product)
+                                @if($loop->index >= 5)
+                                    @break
+                                @elseif($loop->index == 0)
+                                    @continue
+                                @endif
+                                <td class="text-center p-5">
+                                    @foreach($viewed_product['images'] as $viewed_image)
+                                        @if(isset($viewed_image['featured']) && $viewed_image['featured'] === true)
+                                            @foreach($viewed_image['sizes'] as $size)
+                                                @if($size['size'] == "small")
+                                                    <img class="inline-block" src="{{ $size['url'] }}" />
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+                                    <div class="font-bold">{{ $viewed_product['description'] }}</div>
+                                    ${{ ($viewed_product['items'][0]['price']['promo'] != 0)? $viewed_product['items'][0]['price']['promo'] : $viewed_product['items'][0]['price']['regular'] }}
+                                </td>
+                            @endforeach
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        @endif
     </div>
 </div>

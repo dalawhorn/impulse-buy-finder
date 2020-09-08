@@ -46,6 +46,11 @@ class Products extends Component
     {
         $this->location_id = session('location_id');
         $this->location_data = session('location_data');
+
+        if(!is_null(session('recently_viewed', null))) {
+            $this->recently_viewed = session('recently_viewed');
+        }
+
         if($this->location_id == "" || !is_numeric($this->location_id) ) {
             return redirect('locations');
         }
@@ -68,6 +73,7 @@ class Products extends Component
 
                 array_splice($this->current_products['data'], $random_key,1);
                 array_unshift($this->recently_viewed, $this->random_display_product);
+                session(['recently_viewed' => $this->recently_viewed]);
 
                 if(count($this->recently_viewed) > 20) {
                     array_pop($this->recently_viewed);
