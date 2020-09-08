@@ -9,7 +9,7 @@
         </div>
         <div>
             <div class="text-sm"><strong>Shopping at:</strong> {{ $location_data['name'] }}</div>
-            <a class="text-blue-500 text-sm" href="/locations">Change Store</a>
+            <a class="text-blue-500 text-sm" href="/">Change Store</a>
         </div>
     </div>
 

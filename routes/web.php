@@ -13,7 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/locations', 'LocationsController@index');
+Route::get('/', 'LocationsController@index');
 Route::get('/products', 'ProductsController@index');
-
-Route::view('/', 'welcome')->name('home');
